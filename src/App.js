@@ -9,7 +9,7 @@ function App() {
     { name: 'item2', price: 7, image: 'image-url-2' },
     { name: 'item3', price: 10, image: 'image-url-3' },
     { name: 'item4', price: 2, image: 'image-url-4' },
-  ])
+  ]);
   const [selectedItem, setSelectedItem] = useState(null)
 
   const selectItem = (item) => {
@@ -27,12 +27,11 @@ function App() {
         <div style={{ width: '30%', border: '2px solid green', color: 'green' }}>
           <Items items={items} selectItem={selectItem} />
         </div>
-        <div style={{ width: '60%', border: '2px solid green', color: 'black' }}>
+        <div style={{ width: '30%', border: '2px solid green', color: 'black' }}>
           <ItemDetails selectedItem={selectedItem} />
-          <button onClick={() => setSelectedItem(null)} style={{ color: 'green', border: '2px solid green' }}>
-            Add New Item
-          </button>
-          {selectedItem === null && <NewItemForm addItem={addItem} />}
+        </div>
+        <div style={{ width: '30%', border: '2px solid green', color: 'black' }}>
+          <NewItemForm addItem={addItem} />
         </div>
       </div>
     </div>
