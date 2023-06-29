@@ -1,38 +1,37 @@
 import React, { useState } from 'react'
 
-const NewItemForm = ({ addItem }) => {
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [image, setImage] = useState('')
+function NewItemForm({ addItem }) {
+  const [showForm, setShowForm] = useState(false)
+  const [item, setItem] = useState({ name: '', price: '', image: '' })
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        addItem({ name, price: parseFloat(price), image })
-        setName('')
-        setPrice('')
-        setImage('')
-    }
+  const handleChange = (e) => {
+    setItem({ ...item, [e.target.name]: e.target.value })
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    addItem(item)
+    setItem({ name: '', price: '', image: '' })
+    setShowForm(false)
+  }
+
+  if (!showForm) {
     return (
-        <div style={{ border: '2px solid green', color: 'black' }}>
-            <h2>Add New Item</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                </label>
-                <label>
-                    Price:
-                    <input type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} required />
-                </label>
-                <label>
-                    Image URL:
-                    <input type="url" value={image} onChange={(e) => setImage(e.target.value)} required />
-                </label>
-                <button type="submit">Add</button>
-            </form>
-        </div>
+      <div>
+        <h2>Item Form</h2>
+        <button onClick={() => setShowForm(true)}>Add New Item</button>
+      </div>
     )
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="name" value={item.name} onChange={handleChange} placeholder="Name" required />
+      <input name="price" value={item.price} onChange={handleChange} placeholder="Price" type="number" required />
+      <input name="image" value={item.image} onChange={handleChange} placeholder="Image URL" required />
+      <button type="submit">Add</button>
+    </form>
+  )
 }
 
 export default NewItemForm
