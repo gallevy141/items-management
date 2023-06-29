@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Items from './components/Items'
 import ItemDetails from './components/ItemDetails'
+import NewItemForm from './components/NewItemForm'
 
 function App() {
   const [items, setItems] = useState([
@@ -15,13 +16,17 @@ function App() {
     setSelectedItem(item)
   }
 
+  const addItem = (item) => {
+    setItems(prevItems => [...prevItems, item])
+  }
+
   return (
     <div style={{ backgroundColor: 'green', color: 'black' }}>
       <h1>Items Management</h1>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <Items items={items} selectItem={selectItem} />
         <ItemDetails selectedItem={selectedItem} />
-        <div style={{ border: '2px solid green', color: 'black' }}>Add New Item</div>
+        <NewItemForm addItem={addItem} />
       </div>
     </div>
   )
