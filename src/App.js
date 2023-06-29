@@ -9,7 +9,7 @@ function App() {
     { name: 'item2', price: 7, image: 'image-url-2' },
     { name: 'item3', price: 10, image: 'image-url-3' },
     { name: 'item4', price: 2, image: 'image-url-4' },
-  ])
+  ]);
   const [selectedItem, setSelectedItem] = useState(null)
 
   const selectItem = (item) => {
@@ -23,10 +23,16 @@ function App() {
   return (
     <div style={{ backgroundColor: 'green', color: 'black' }}>
       <h1>Items Management</h1>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <Items items={items} selectItem={selectItem} />
-        <ItemDetails selectedItem={selectedItem} />
-        <NewItemForm addItem={addItem} />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ width: '30%' }}>
+          <Items items={items} selectItem={selectItem} />
+        </div>
+        <div style={{ width: '30%' }}>
+          <ItemDetails selectedItem={selectedItem} />
+        </div>
+        <div style={{ width: '30%' }}>
+          <NewItemForm addItem={addItem} />
+        </div>
       </div>
     </div>
   )
